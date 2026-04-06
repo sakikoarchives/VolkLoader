@@ -19,12 +19,12 @@ namespace VolkLoaderAvalonia;
 public partial class MainWindow : Window
 {
     private const string BannerText =
-        "┈┈┏╮┏╮┈┈┈┈┈┈┈┈╭╮   VOLKLOADER [AVALONIA-PORT]\n" +
-        "┈╭┛┗┛┗┳━━━━━━╮┃┃   early-beta4 // stable shell\n" +
-        "┈┃▅┃▅┈┃╰╰╰╰╰╰┣╯┃   C# + Avalonia\n" +
+        "┈┈┏╮┏╮┈┈┈┈┈┈┈┈╭╮   VOLKLOADER [AVALONIA-PORT]            \n" +
+        "┈╭┛┗┛┗┳━━━━━━╮┃┃   early-beta4 // stable shell           \n" +
+        "┈┃▅┃▅┈┃╰╰╰╰╰╰┣╯┃   C# + Avalonia                         \n" +
         "▇┻━╯┈┈┃╰╰╰╰╰╰┣━╯   --------------------------------------\n" +
-        "┣━━━╯┈╰╰╰╰╰╰╰┃┈┈   File-backed catalog, browser launch,\n" +
-        "╰━━┳┳━┓┏━┳┳┓┏╯┈┈   aria2c integration, themes and i18n.";
+        "┣━━━╯┈╰╰╰╰╰╰╰┃┈┈   File-backed catalog, browser launch,  \n" +
+        "╰━━┳┳━┓┏━┳┳┓┏╯┈┈   aria2c integration, themes and i18n.    ";
 
     private readonly string _baseDirectory = AppContext.BaseDirectory;
 
