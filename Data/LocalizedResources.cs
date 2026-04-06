@@ -39,6 +39,7 @@ public static class LocalizedResources
         en.Values["browser_opened_message"] = "The link was opened in the default browser.";
         en.Values["catalog_notice"] = "This Avalonia port loads data from catalog.json. The bundled file contains only placeholders; replace them with lawful resources you are allowed to distribute.";
         en.Values["settings_footer"] = "Avalonia port generated from the uploaded Python app";
+        en.Values["hero_subtitle"] = "Desktop launcher shell with themes, locales, file-backed catalog and aria2c integration.";
 
         var ru = new LocaleBundle();
         ru.Values["nav_home"] = "ГЛАВНАЯ";
@@ -72,6 +73,7 @@ public static class LocalizedResources
         ru.Values["browser_opened_message"] = "Ссылка открыта в браузере по умолчанию.";
         ru.Values["catalog_notice"] = "Этот порт на Avalonia загружает данные из catalog.json. В комплекте лежат только заглушки; замени их на легальные ресурсы, которые ты имеешь право распространять.";
         ru.Values["settings_footer"] = "Порт на Avalonia, собранный по загруженному Python-приложению";
+        ru.Values["hero_subtitle"] = "Desktop-оболочка с темами, локалями, каталогом из файла и интеграцией aria2c.";
 
         return new Dictionary<string, LocaleBundle>
         {

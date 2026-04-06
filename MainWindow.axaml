@@ -5,37 +5,74 @@
         Height="850"
         MinWidth="900"
         MinHeight="700"
+        Background="#080808"
+        TransparencyLevelHint="None"
         Title="VOLKLOADER - Avalonia port">
   <Grid ColumnDefinitions="240,*">
     <Border x:Name="Sidebar"
             Grid.Column="0"
-            BorderThickness="1">
-      <StackPanel Margin="25,20,25,20" Spacing="10">
-        <Button x:Name="HomeButton" Height="55" Click="OnHomeClicked" />
-        <Button x:Name="GamesButton" Height="55" Click="OnGamesClicked" />
-        <Button x:Name="ServerButton" Height="55" Click="OnServerClicked" />
-        <Button x:Name="SettingsButton" Height="55" Click="OnSettingsClicked" />
-      </StackPanel>
+            BorderThickness="0,0,1,0">
+      <Grid RowDefinitions="Auto,*,Auto">
+        <StackPanel Margin="20,22,20,18" Spacing="6">
+          <TextBlock x:Name="SidebarTitle"
+                     Text="VOLKLOADER"
+                     FontSize="28"
+                     FontWeight="Bold"
+                     HorizontalAlignment="Center" />
+          <TextBlock x:Name="SidebarSubtitle"
+                     Text="early-beta4 // Avalonia"
+                     FontSize="12"
+                     HorizontalAlignment="Center" />
+          <Border x:Name="SidebarDivider"
+                  Height="1"
+                  Margin="0,10,0,2" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="25,0,25,20" Spacing="10">
+          <Button x:Name="HomeButton" Height="55" Click="OnHomeClicked" />
+          <Button x:Name="GamesButton" Height="55" Click="OnGamesClicked" />
+          <Button x:Name="ServerButton" Height="55" Click="OnServerClicked" />
+          <Button x:Name="SettingsButton" Height="55" Click="OnSettingsClicked" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="22,10,22,18" Spacing="6">
+          <Border x:Name="SidebarFooterDivider"
+                  Height="1"
+                  Margin="0,0,0,6" />
+          <TextBlock x:Name="SidebarFooterLine1"
+                     Text="C# + Avalonia"
+                     FontSize="12"
+                     HorizontalAlignment="Center" />
+          <TextBlock x:Name="SidebarFooterLine2"
+                     Text="theme / locale / aria2c"
+                     FontSize="11"
+                     HorizontalAlignment="Center" />
+        </StackPanel>
+      </Grid>
     </Border>
 
     <Grid Grid.Column="1" Margin="10">
       <Border x:Name="ContainerBorder"
               BorderThickness="1"
-              CornerRadius="15"
-              Padding="15">
+              CornerRadius="16"
+              Padding="18">
         <ScrollViewer>
-          <StackPanel x:Name="ContentPanel" Spacing="12" />
+          <StackPanel x:Name="ContentPanel" Spacing="14" />
         </ScrollViewer>
       </Border>
+
+      <Border x:Name="OverlayBackdrop"
+              IsVisible="False"
+              Background="#88000000" />
 
       <Border x:Name="OverlayBorder"
               IsVisible="False"
               Width="620"
               HorizontalAlignment="Center"
               VerticalAlignment="Center"
-              Padding="22"
+              Padding="24"
               BorderThickness="2"
-              CornerRadius="15"
+              CornerRadius="16"
               ZIndex="100">
         <StackPanel x:Name="OverlayPanel" Spacing="12" />
       </Border>
