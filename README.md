@@ -11,9 +11,25 @@ This project is a C# + Avalonia rewrite of the uploaded Python GUI's desktop she
 - Browser opening through the OS shell
 - Optional `aria2c` launching from PATH
 
-## Catalog status
+## Catalog template status
 
-The bundled `catalog.json` now reflects the real game names, version names, and link labels from the uploaded Python script. Direct mirror URLs and server-binary download links were intentionally left blank, so you can fill them locally only with resources you are authorized to use.
+The bundled `catalog.json` is now fully populated with the original safe structure from the uploaded Python script:
+- real game names
+- real version names
+- real link labels
+- server-repository section names
+- external-link entry names
+
+Every URL is set to `PLACEHOLDER_URL`.
+The app treats `PLACEHOLDER_URL` and empty strings as **not configured**.
+
+## How to fill the catalog manually
+
+1. Close the app.
+2. Open `catalog.json` in any text editor.
+3. Replace each `PLACEHOLDER_URL` with your own authorized URL.
+4. Save the file.
+5. Run the app again.
 
 ## Run
 

@@ -14,7 +14,10 @@ public static class LocalizedResources
         en.Values["nav_settings"] = "SETTINGS";
         en.Values["home_games"] = "DOWNLOAD GAMES";
         en.Values["home_servers"] = "DOWNLOAD SERVERS";
-        en.Values["server_specs"] = "RAM: 16.0 GB+\nDISK: 8.0 GB+\nVIRTUALIZATION: ENABLED\nOS: WINDOWS 64-BIT";
+        en.Values["server_specs"] = "RAM: 16.0 GB+
+DISK: 8.0 GB+
+VIRTUALIZATION: ENABLED
+OS: WINDOWS 64-BIT";
         en.Values["server_tools"] = "DOWNLOAD TOOLS BUNDLE";
         en.Values["server_repo"] = "BROWSE SERVER REPO";
         en.Values["server_guide"] = "READ SETUP GUIDE";
@@ -31,15 +34,23 @@ public static class LocalizedResources
         en.Values["aria_status"] = "ARIA2C STATUS:";
         en.Values["setup_guide_title"] = "SETUP GUIDE";
         en.Values["server_repo_title"] = "SERVER REPOSITORY";
-        en.Values["guide_text"] = "1. Preparation: install the required runtime tools.\n2. Download: keep your archives in a path without exotic symbols.\n3. Install: follow the README for your lawful resources.\n4. Start: make sure all required background services are healthy.\n5. Verify: test links and local files before distributing the build.";
+        en.Values["guide_text"] = "1. Preparation: install Docker & SucroseProxy.
+2. Download: extract the server (avoid problematic symbols in the path).
+3. Install: run the required bootstrap script with administrator rights.
+4. Start: launch the start script and verify that all background services are healthy.
+5. Login: use your own lawful test environment and credentials.";
         en.Values["not_found"] = "[ NOT FOUND ]";
         en.Values["found"] = "[ FOUND ]";
         en.Values["aria_missing_message"] = "aria2c was not found in PATH.";
         en.Values["aria_started_message"] = "aria2c was started in the background.";
         en.Values["browser_opened_message"] = "The link was opened in the default browser.";
-        en.Values["catalog_notice"] = "The bundled catalog now includes the original game/version structure and link labels from the uploaded Python app. Direct mirror URLs and server-binary links were intentionally left blank.";
+        en.Values["catalog_notice"] = "The bundled catalog.json is now fully populated with the original section, version, and label structure. Replace PLACEHOLDER_URL values with your own authorized links.";
         en.Values["settings_footer"] = "early-beta4 | build 1004";
         en.Values["hero_subtitle"] = "Specialized loader shell for private research, reverse engineering, and testing environments.";
+        en.Values["link_not_configured"] = "This entry is present in the template, but its URL is not configured yet.";
+        en.Values["server_tools_missing_message"] = "No tool URLs are configured yet. Edit catalog.json and replace PLACEHOLDER_URL.";
+        en.Values["community_missing_message"] = "The community link is not configured yet. Edit catalog.json and replace PLACEHOLDER_URL.";
+        en.Values["overlay_placeholder_hint"] = "Edit catalog.json and replace PLACEHOLDER_URL with your own URL.";
 
         var ru = new LocaleBundle();
         ru.Values["nav_home"] = "ГЛАВНАЯ";
@@ -48,7 +59,10 @@ public static class LocalizedResources
         ru.Values["nav_settings"] = "НАСТРОЙКИ";
         ru.Values["home_games"] = "СКАЧАТЬ ИГРЫ";
         ru.Values["home_servers"] = "СКАЧАТЬ СЕРВЕРЫ";
-        ru.Values["server_specs"] = "ОЗУ: 16.0 ГБ+\nДИСК: 8.0 ГБ+\nВИРТУАЛИЗАЦИЯ: ВКЛЮЧЕНА\nОС: WINDOWS 64-BIT";
+        ru.Values["server_specs"] = "ОЗУ: 16.0 ГБ+
+ДИСК: 8.0 ГБ+
+ВИРТУАЛИЗАЦИЯ: ВКЛЮЧЕНА
+ОС: WINDOWS 64-BIT";
         ru.Values["server_tools"] = "СКАЧАТЬ НАБОР СОФТА";
         ru.Values["server_repo"] = "КАТАЛОГ СЕРВЕРОВ";
         ru.Values["server_guide"] = "ИНСТРУКЦИЯ ПО УСТАНОВКЕ";
@@ -65,15 +79,23 @@ public static class LocalizedResources
         ru.Values["aria_status"] = "СТАТУС ARIA2C:";
         ru.Values["setup_guide_title"] = "ИНСТРУКЦИЯ";
         ru.Values["server_repo_title"] = "РЕПОЗИТОРИЙ СЕРВЕРОВ";
-        ru.Values["guide_text"] = "1. Подготовка: установи необходимые инструменты среды.\n2. Загрузка: держи архивы в пути без экзотических символов.\n3. Установка: следуй README для своих легальных ресурсов.\n4. Запуск: убедись, что все фоновые сервисы запущены.\n5. Проверка: проверь ссылки и локальные файлы перед распространением сборки.";
+        ru.Values["guide_text"] = "1. Подготовка: установи Docker и SucroseProxy.
+2. Загрузка: распакуй сервер в путь без проблемных символов.
+3. Установка: запусти нужный bootstrap-скрипт с правами администратора.
+4. Запуск: стартуй сервер и проверь, что фоновые сервисы работают штатно.
+5. Вход: используй свою легальную тестовую среду и собственные учётные данные.";
         ru.Values["not_found"] = "[ НЕ НАЙДЕНО ]";
         ru.Values["found"] = "[ НАЙДЕНО ]";
         ru.Values["aria_missing_message"] = "aria2c не найден в PATH.";
         ru.Values["aria_started_message"] = "aria2c был запущен в фоне.";
         ru.Values["browser_opened_message"] = "Ссылка открыта в браузере по умолчанию.";
-        ru.Values["catalog_notice"] = "В комплектный каталог уже перенесены реальные названия игр, версий и подписей ссылок из загруженного Python-приложения. Прямые mirror-URL и ссылки на серверные бинарники намеренно оставлены пустыми.";
+        ru.Values["catalog_notice"] = "Файл catalog.json теперь полностью заполнен исходной структурой разделов, версий и подписей. Замени значения PLACEHOLDER_URL на свои разрешённые ссылки.";
         ru.Values["settings_footer"] = "early-beta4 | build 1004";
         ru.Values["hero_subtitle"] = "Специализированная оболочка-загрузчик для приватных исследовательских и тестовых сред.";
+        ru.Values["link_not_configured"] = "Эта запись уже есть в шаблоне, но URL для неё пока не задан.";
+        ru.Values["server_tools_missing_message"] = "URL для набора инструментов пока не заданы. Открой catalog.json и замени PLACEHOLDER_URL.";
+        ru.Values["community_missing_message"] = "Ссылка сообщества пока не задана. Открой catalog.json и замени PLACEHOLDER_URL.";
+        ru.Values["overlay_placeholder_hint"] = "Открой catalog.json и замени PLACEHOLDER_URL на свой URL.";
 
         return new Dictionary<string, LocaleBundle>
         {

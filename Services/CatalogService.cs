@@ -45,26 +45,12 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "pCloud Mirror (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "pCloud Mirror (+)", Url = "PLACEHOLDER_URL" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 2",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "ZZZ APK (Xeondev ±)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "ZZZ APK (Xeondev ±)", Url = "PLACEHOLDER_URL" } },
                         },
                     },
                 },
@@ -76,14 +62,7 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "Pre-CBT v0.56",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "Archive.org Mirror (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "PLACEHOLDER_URL" } },
                         },
                     },
                 },
@@ -95,59 +74,29 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "Archive.org Mirror (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "PLACEHOLDER_URL" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 1.1",
                             Links =
                             {
-                                new LinkEntry
-                                {
-                                    Name = "YuanShen_CB1.1_80d9 (+)",
-                                    Url = string.Empty,
-                                },
-                                new LinkEntry
-                                {
-                                    Name = "YuanShen_CB1.1_4a10 (+)",
-                                    Url = string.Empty,
-                                },
+                                new LinkEntry { Name = "YuanShen_CB1.1_80d9 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "YuanShen_CB1.1_4a10 (+)", Url = "PLACEHOLDER_URL" },
                             },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 2",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "YuanShen_CB2.0.0 (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "YuanShen_CB2.0.0 (+)", Url = "PLACEHOLDER_URL" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 0.7.0",
                             Links =
                             {
-                                new LinkEntry
-                                {
-                                    Name = "Genshin_0.7.0 (+)",
-                                    Url = string.Empty,
-                                },
-                                new LinkEntry
-                                {
-                                    Name = "Genshin_0.7.1 (+)",
-                                    Url = string.Empty,
-                                },
+                                new LinkEntry { Name = "Genshin_0.7.0 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "Genshin_0.7.1 (+)", Url = "PLACEHOLDER_URL" },
                             },
                         },
                         new VersionEntry
@@ -155,16 +104,8 @@ public sealed class CatalogService
                             Name = "CBT 0.9.0",
                             Links =
                             {
-                                new LinkEntry
-                                {
-                                    Name = "YuanShen_0.9.3 (+)",
-                                    Url = string.Empty,
-                                },
-                                new LinkEntry
-                                {
-                                    Name = "YuanShen_0.9.9 (+)",
-                                    Url = string.Empty,
-                                },
+                                new LinkEntry { Name = "YuanShen_0.9.3 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "YuanShen_0.9.9 (+)", Url = "PLACEHOLDER_URL" },
                             },
                         },
                     },
@@ -180,26 +121,12 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1 (Story Mode)",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "Telegram Mirror (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "Telegram Mirror (+)", Url = "PLACEHOLDER_URL" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 1.3",
-                            Links =
-                            {
-                                new LinkEntry
-                                {
-                                    Name = "Google Drive (+)",
-                                    Url = string.Empty,
-                                },
-                            },
+                            Links = { new LinkEntry { Name = "Google Drive (+)", Url = "PLACEHOLDER_URL" } },
                         },
                     },
                 },
@@ -208,13 +135,10 @@ public sealed class CatalogService
             {
                 ServerTools =
                 {
-                    new LinkEntry
-                    {
-                        Name = "Docker Desktop",
-                        Url = "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
-                    },
+                    new LinkEntry { Name = "Docker Desktop", Url = "PLACEHOLDER_URL" },
+                    new LinkEntry { Name = "SucroseProxy", Url = "PLACEHOLDER_URL" },
                 },
-                CommunityUrl = string.Empty,
+                CommunityUrl = "PLACEHOLDER_URL",
             },
         };
     }

@@ -1,4 +1,12 @@
 {
+  "TemplateInfo": {
+    "HowToUse": [
+      "Replace every URL value equal to PLACEHOLDER_URL with your own authorized URL.",
+      "The app treats PLACEHOLDER_URL and empty strings as not configured.",
+      "You can edit this file while the app is closed."
+    ],
+    "PlaceholderUrlValue": "PLACEHOLDER_URL"
+  },
   "Games": [
     {
       "Title": "Zenless Zone Zero",
@@ -8,7 +16,7 @@
           "Links": [
             {
               "Name": "pCloud Mirror (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -17,7 +25,7 @@
           "Links": [
             {
               "Name": "ZZZ APK (Xeondev ±)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         }
@@ -31,7 +39,7 @@
           "Links": [
             {
               "Name": "Archive.org Mirror (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         }
@@ -45,7 +53,7 @@
           "Links": [
             {
               "Name": "Archive.org Mirror (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -54,11 +62,11 @@
           "Links": [
             {
               "Name": "YuanShen_CB1.1_80d9 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             },
             {
               "Name": "YuanShen_CB1.1_4a10 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -67,7 +75,7 @@
           "Links": [
             {
               "Name": "YuanShen_CB2.0.0 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -76,11 +84,11 @@
           "Links": [
             {
               "Name": "Genshin_0.7.0 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             },
             {
               "Name": "Genshin_0.7.1 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -89,11 +97,11 @@
           "Links": [
             {
               "Name": "YuanShen_0.9.3 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             },
             {
               "Name": "YuanShen_0.9.9 (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         }
@@ -109,7 +117,7 @@
           "Links": [
             {
               "Name": "Telegram Mirror (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         },
@@ -118,7 +126,7 @@
           "Links": [
             {
               "Name": "Google Drive (+)",
-              "Url": ""
+              "Url": "PLACEHOLDER_URL"
             }
           ]
         }
@@ -129,9 +137,13 @@
     "ServerTools": [
       {
         "Name": "Docker Desktop",
-        "Url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
+        "Url": "PLACEHOLDER_URL"
+      },
+      {
+        "Name": "SucroseProxy",
+        "Url": "PLACEHOLDER_URL"
       }
     ],
-    "CommunityUrl": ""
+    "CommunityUrl": "PLACEHOLDER_URL"
   }
 }

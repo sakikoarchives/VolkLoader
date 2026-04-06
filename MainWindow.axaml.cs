@@ -137,7 +137,7 @@ public partial class MainWindow : Window
         ClearContent();
         AddLogo();
         ContentPanel.Children.Add(CreateInfoCard(CurrentLocale["server_specs"], CurrentTheme.Neon));
-        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_tools"], CurrentTheme.Accent, "#FFFFFF", OpenServerTools));
+        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_tools"], CurrentTheme.Accent, "#FFFFFF", OpenServerTools, isEnabled: HasConfiguredToolUrls()));
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_repo"], CurrentTheme.Neon, "#FFFFFF", ShowServerRepo));
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_guide"], CurrentTheme.Background, "#909090", ShowGuide));
     }
@@ -184,7 +184,7 @@ public partial class MainWindow : Window
 
         foreach (var link in links)
         {
-            ContentPanel.Children.Add(CreateLinkResourceButton(link.Name, () => ShowActionOverlay(link.Url), !string.IsNullOrWhiteSpace(link.Url)));
+            ContentPanel.Children.Add(CreateLinkResourceButton(link.Name, () => ShowActionOverlay(link.Url), IsConfiguredUrl(link.Url)));
         }
 
         ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], backAction, "#909090"));
@@ -240,7 +240,7 @@ public partial class MainWindow : Window
         ContentPanel.Children.Add(CreateHeaderBlock(CurrentLocale["lang_selector"], CurrentTheme.Neon, 20));
         ContentPanel.Children.Add(WrapCard(CreateLanguageSelector(), CurrentTheme.Accent, new Thickness(160, 2, 160, 8), new Thickness(16, 14)));
 
-        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["community"], CurrentTheme.Background, CurrentTheme.Neon, OpenCommunityLink, 320, 52));
+        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["community"], CurrentTheme.Background, CurrentTheme.Neon, OpenCommunityLink, 320, 52, IsConfiguredUrl(_catalog.ExternalLinks.CommunityUrl)));
         ContentPanel.Children.Add(new TextBlock
         {
             Text = CurrentLocale["settings_footer"],
@@ -426,11 +426,21 @@ public partial class MainWindow : Window
         return panel;
     }
 
-    private Button CreateWideButton(string text, string backgroundHex, string textOrAccentHex, Action onClick, double width = 580, double height = 75)
+    private Button CreateWideButton(string text, string backgroundHex, string textOrAccentHex, Action onClick, double width = 580, double height = 75, bool isEnabled = true)
     {
         var button = CreateBaseButton(text, backgroundHex, textOrAccentHex, width, height);
-        AttachInteractiveEffects(button, backgroundHex, textOrAccentHex, CurrentTheme.Border, pressedUsesForeground: false);
-        button.Click += (_, _) => onClick();
+        if (isEnabled)
+        {
+            AttachInteractiveEffects(button, backgroundHex, textOrAccentHex, CurrentTheme.Border, pressedUsesForeground: false);
+            button.Click += (_, _) => onClick();
+        }
+        else
+        {
+            button.IsEnabled = false;
+            button.Opacity = 0.60;
+            SetButtonVisual(button, backgroundHex, "#888888", CurrentTheme.Border);
+        }
+
         return button;
     }
 
@@ -506,10 +516,14 @@ public partial class MainWindow : Window
         OverlayPanel.Children.Clear();
         OverlayPanel.Children.Add(CreateHeaderBlock(CurrentLocale["select_method"], CurrentTheme.Neon, 20));
 
+        var displayText = IsConfiguredUrl(url)
+            ? url
+            : CurrentLocale["link_not_configured"] + "\n\n" + CurrentLocale["overlay_placeholder_hint"];
+
         OverlayPanel.Children.Add(WrapCard(
             new TextBlock
             {
-                Text = url,
+                Text = displayText,
                 Foreground = Brush(CurrentTheme.Text),
                 FontFamily = MonoFont(),
                 FontSize = 12,
@@ -572,30 +586,41 @@ public partial class MainWindow : Window
 
     private void OpenServerTools()
     {
+        var openedAny = false;
         foreach (var link in _catalog.ExternalLinks.ServerTools)
         {
-            TryOpenTarget(link.Url);
+            if (IsConfiguredUrl(link.Url))
+            {
+                TryOpenTarget(link.Url);
+                openedAny = true;
+            }
         }
 
-        ShowInfoOverlay(CurrentLocale["browser_opened_message"]);
+        ShowInfoOverlay(openedAny ? CurrentLocale["browser_opened_message"] : CurrentLocale["server_tools_missing_message"]);
     }
 
     private void OpenCommunityLink()
     {
-        if (!string.IsNullOrWhiteSpace(_catalog.ExternalLinks.CommunityUrl))
+        if (IsConfiguredUrl(_catalog.ExternalLinks.CommunityUrl))
         {
             TryOpenTarget(_catalog.ExternalLinks.CommunityUrl);
             ShowInfoOverlay(CurrentLocale["browser_opened_message"]);
+            return;
         }
+
+        ShowInfoOverlay(CurrentLocale["community_missing_message"]);
     }
 
     private void OpenInBrowser()
     {
-        if (!string.IsNullOrWhiteSpace(_selectedActionUrl))
+        if (IsConfiguredUrl(_selectedActionUrl))
         {
             TryOpenTarget(_selectedActionUrl);
             ShowInfoOverlay(CurrentLocale["browser_opened_message"]);
+            return;
         }
+
+        ShowInfoOverlay(CurrentLocale["link_not_configured"]);
     }
 
     private void StartAriaDownload()
@@ -603,6 +628,12 @@ public partial class MainWindow : Window
         if (!IsAriaInstalled())
         {
             ShowInfoOverlay(CurrentLocale["aria_missing_message"]);
+            return;
+        }
+
+        if (!IsConfiguredUrl(_selectedActionUrl))
+        {
+            ShowInfoOverlay(CurrentLocale["link_not_configured"]);
             return;
         }
 
@@ -838,6 +869,27 @@ public partial class MainWindow : Window
             ["CLASSIC_LIGHT"] = new AppTheme("CLASSIC_LIGHT", "#F0F0F0", "#E0E0E0", "#333333", "#555555", "#CCCCCC", "#222222", ThemeVariant.Light),
             ["CYBER_YELLOW"] = new AppTheme("CYBER_YELLOW", "#1A1A1A", "#111111", "#FFD700", "#FFA500", "#333333", "#FFD700", ThemeVariant.Dark),
         };
+    }
+
+    private bool HasConfiguredToolUrls()
+    {
+        return _catalog.ExternalLinks.ServerTools.Any(static link => IsConfiguredUrl(link.Url));
+    }
+
+    private static bool IsConfiguredUrl(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return false;
+        }
+
+        if (string.Equals(value, "PLACEHOLDER_URL", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        return Uri.TryCreate(value, UriKind.Absolute, out var uri)
+            && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
     }
 
     private static bool IsAriaInstalled()
