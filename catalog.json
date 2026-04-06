@@ -1,0 +1,47 @@
+{
+  "Games": [
+    {
+      "Title": "Sample Game",
+      "Versions": [
+        {
+          "Name": "Sample Version 1",
+          "Links": [
+            {
+              "Name": "Official page",
+              "Url": "https://example.com/game"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ServerRepo": [
+    {
+      "Title": "Sample Server Resources",
+      "Versions": [
+        {
+          "Name": "Setup archive",
+          "Links": [
+            {
+              "Name": "Documentation",
+              "Url": "https://example.com/server-docs"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ExternalLinks": {
+    "ServerTools": [
+      {
+        "Name": "Docker Desktop",
+        "Url": "https://www.docker.com/products/docker-desktop/"
+      },
+      {
+        "Name": "Resource placeholder",
+        "Url": "https://example.com/tools-bundle"
+      }
+    ],
+    "CommunityUrl": "https://example.com/community"
+  }
+}
