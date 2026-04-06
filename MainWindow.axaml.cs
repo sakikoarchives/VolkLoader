@@ -19,12 +19,12 @@ namespace VolkLoaderAvalonia;
 public partial class MainWindow : Window
 {
     private const string BannerText =
-        "┈┈┏╮┏╮┈┈┈┈┈┈┈┈╭╮   VOLKLOADER [AVALONIA-PORT]            \n" +
-        "┈╭┛┗┛┗┳━━━━━━╮┃┃   early-beta4 // stable shell           \n" +
-        "┈┃▅┃▅┈┃╰╰╰╰╰╰┣╯┃   C# + Avalonia                         \n" +
+        "┈┈┏╮┏╮┈┈┈┈┈┈┈┈╭╮   VOLKLOADER [STABLE-BUILD]\n" +
+        "┈╭┛┗┛┗┳━━━━━━╮┃┃   early-beta4 | build 1004\n" +
+        "┈┃▅┃▅┈┃╰╰╰╰╰╰┣╯┃   MADE BY VOLCHOKTEAM\n" +
         "▇┻━╯┈┈┃╰╰╰╰╰╰┣━╯   --------------------------------------\n" +
-        "┣━━━╯┈╰╰╰╰╰╰╰┃┈┈   File-backed catalog, browser launch,  \n" +
-        "╰━━┳┳━┓┏━┳┳┓┏╯┈┈   aria2c integration, themes and i18n.    ";
+        "┣━━━╯┈╰╰╰╰╰╰╰┃┈┈   Specialized loader shell for private\n" +
+        "╰━━┳┳━┓┏━┳┳┓┏╯┈┈   research, reverse engineering, and testing.";
 
     private readonly string _baseDirectory = AppContext.BaseDirectory;
 
@@ -184,7 +184,7 @@ public partial class MainWindow : Window
 
         foreach (var link in links)
         {
-            ContentPanel.Children.Add(CreateLinkResourceButton(link.Name, () => ShowActionOverlay(link.Url)));
+            ContentPanel.Children.Add(CreateLinkResourceButton(link.Name, () => ShowActionOverlay(link.Url), !string.IsNullOrWhiteSpace(link.Url)));
         }
 
         ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], backAction, "#909090"));
@@ -443,12 +443,21 @@ public partial class MainWindow : Window
         return button;
     }
 
-    private Button CreateLinkResourceButton(string text, Action onClick)
+    private Button CreateLinkResourceButton(string text, Action onClick, bool isAvailable)
     {
         var button = CreateBaseButton($"★ {text}", CurrentTheme.Sidebar, CurrentTheme.Text, 620, 55);
-        SetButtonVisual(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border);
-        AttachInteractiveEffects(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border, pressedUsesForeground: true);
-        button.Click += (_, _) => onClick();
+        if (isAvailable)
+        {
+            SetButtonVisual(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border);
+            AttachInteractiveEffects(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border, pressedUsesForeground: true);
+            button.Click += (_, _) => onClick();
+        }
+        else
+        {
+            button.IsEnabled = false;
+            button.Opacity = 0.60;
+            SetButtonVisual(button, CurrentTheme.Sidebar, "#888888", CurrentTheme.Border);
+        }
         return button;
     }
 

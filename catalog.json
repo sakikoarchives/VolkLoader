@@ -1,14 +1,99 @@
 {
   "Games": [
     {
-      "Title": "Sample Game",
+      "Title": "Zenless Zone Zero",
       "Versions": [
         {
-          "Name": "Sample Version 1",
+          "Name": "CBT 1",
           "Links": [
             {
-              "Name": "Official page",
-              "Url": "https://example.com/game"
+              "Name": "pCloud Mirror (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 2",
+          "Links": [
+            {
+              "Name": "ZZZ APK (Xeondev ±)",
+              "Url": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "Honkai: Star Rail",
+      "Versions": [
+        {
+          "Name": "Pre-CBT v0.56",
+          "Links": [
+            {
+              "Name": "Archive.org Mirror (+)",
+              "Url": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Title": "Genshin Impact",
+      "Versions": [
+        {
+          "Name": "CBT 1",
+          "Links": [
+            {
+              "Name": "Archive.org Mirror (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 1.1",
+          "Links": [
+            {
+              "Name": "YuanShen_CB1.1_80d9 (+)",
+              "Url": ""
+            },
+            {
+              "Name": "YuanShen_CB1.1_4a10 (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 2",
+          "Links": [
+            {
+              "Name": "YuanShen_CB2.0.0 (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 0.7.0",
+          "Links": [
+            {
+              "Name": "Genshin_0.7.0 (+)",
+              "Url": ""
+            },
+            {
+              "Name": "Genshin_0.7.1 (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 0.9.0",
+          "Links": [
+            {
+              "Name": "YuanShen_0.9.3 (+)",
+              "Url": ""
+            },
+            {
+              "Name": "YuanShen_0.9.9 (+)",
+              "Url": ""
             }
           ]
         }
@@ -17,14 +102,23 @@
   ],
   "ServerRepo": [
     {
-      "Title": "Sample Server Resources",
+      "Title": "Genshin Impact",
       "Versions": [
         {
-          "Name": "Setup archive",
+          "Name": "CBT 1 (Story Mode)",
           "Links": [
             {
-              "Name": "Documentation",
-              "Url": "https://example.com/server-docs"
+              "Name": "Telegram Mirror (+)",
+              "Url": ""
+            }
+          ]
+        },
+        {
+          "Name": "CBT 1.3",
+          "Links": [
+            {
+              "Name": "Google Drive (+)",
+              "Url": ""
             }
           ]
         }
@@ -35,13 +129,9 @@
     "ServerTools": [
       {
         "Name": "Docker Desktop",
-        "Url": "https://www.docker.com/products/docker-desktop/"
-      },
-      {
-        "Name": "Resource placeholder",
-        "Url": "https://example.com/tools-bundle"
+        "Url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
       }
     ],
-    "CommunityUrl": "https://example.com/community"
+    "CommunityUrl": ""
   }
 }

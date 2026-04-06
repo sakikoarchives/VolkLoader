@@ -15,10 +15,10 @@ public static class LocalizedResources
         en.Values["home_games"] = "DOWNLOAD GAMES";
         en.Values["home_servers"] = "DOWNLOAD SERVERS";
         en.Values["server_specs"] = "RAM: 16.0 GB+\nDISK: 8.0 GB+\nVIRTUALIZATION: ENABLED\nOS: WINDOWS 64-BIT";
-        en.Values["server_tools"] = "OPEN TOOL LINKS";
-        en.Values["server_repo"] = "BROWSE RESOURCE REPO";
-        en.Values["server_guide"] = "READ SETUP NOTES";
-        en.Values["community"] = "COMMUNITY LINK";
+        en.Values["server_tools"] = "DOWNLOAD TOOLS BUNDLE";
+        en.Values["server_repo"] = "BROWSE SERVER REPO";
+        en.Values["server_guide"] = "READ SETUP GUIDE";
+        en.Values["community"] = "TELEGRAM CHANNEL";
         en.Values["back"] = "[ BACK ]";
         en.Values["return"] = "[ RETURN ]";
         en.Values["select_method"] = "--- SELECT METHOD ---";
@@ -37,9 +37,9 @@ public static class LocalizedResources
         en.Values["aria_missing_message"] = "aria2c was not found in PATH.";
         en.Values["aria_started_message"] = "aria2c was started in the background.";
         en.Values["browser_opened_message"] = "The link was opened in the default browser.";
-        en.Values["catalog_notice"] = "This Avalonia port loads data from catalog.json. The bundled file contains only placeholders; replace them with lawful resources you are allowed to distribute.";
-        en.Values["settings_footer"] = "Avalonia port generated from the uploaded Python app";
-        en.Values["hero_subtitle"] = "Desktop launcher shell with themes, locales, file-backed catalog and aria2c integration.";
+        en.Values["catalog_notice"] = "The bundled catalog now includes the original game/version structure and link labels from the uploaded Python app. Direct mirror URLs and server-binary links were intentionally left blank.";
+        en.Values["settings_footer"] = "early-beta4 | build 1004";
+        en.Values["hero_subtitle"] = "Specialized loader shell for private research, reverse engineering, and testing environments.";
 
         var ru = new LocaleBundle();
         ru.Values["nav_home"] = "ГЛАВНАЯ";
@@ -49,10 +49,10 @@ public static class LocalizedResources
         ru.Values["home_games"] = "СКАЧАТЬ ИГРЫ";
         ru.Values["home_servers"] = "СКАЧАТЬ СЕРВЕРЫ";
         ru.Values["server_specs"] = "ОЗУ: 16.0 ГБ+\nДИСК: 8.0 ГБ+\nВИРТУАЛИЗАЦИЯ: ВКЛЮЧЕНА\nОС: WINDOWS 64-BIT";
-        ru.Values["server_tools"] = "ОТКРЫТЬ ИНСТРУМЕНТЫ";
-        ru.Values["server_repo"] = "КАТАЛОГ РЕСУРСОВ";
-        ru.Values["server_guide"] = "ИНСТРУКЦИЯ";
-        ru.Values["community"] = "ССЫЛКА НА СООБЩЕСТВО";
+        ru.Values["server_tools"] = "СКАЧАТЬ НАБОР СОФТА";
+        ru.Values["server_repo"] = "КАТАЛОГ СЕРВЕРОВ";
+        ru.Values["server_guide"] = "ИНСТРУКЦИЯ ПО УСТАНОВКЕ";
+        ru.Values["community"] = "TELEGRAM CHANNEL";
         ru.Values["back"] = "[ НАЗАД ]";
         ru.Values["return"] = "[ В МЕНЮ ]";
         ru.Values["select_method"] = "--- ВЫБЕРИТЕ МЕТОД ---";
@@ -71,9 +71,9 @@ public static class LocalizedResources
         ru.Values["aria_missing_message"] = "aria2c не найден в PATH.";
         ru.Values["aria_started_message"] = "aria2c был запущен в фоне.";
         ru.Values["browser_opened_message"] = "Ссылка открыта в браузере по умолчанию.";
-        ru.Values["catalog_notice"] = "Этот порт на Avalonia загружает данные из catalog.json. В комплекте лежат только заглушки; замени их на легальные ресурсы, которые ты имеешь право распространять.";
-        ru.Values["settings_footer"] = "Порт на Avalonia, собранный по загруженному Python-приложению";
-        ru.Values["hero_subtitle"] = "Desktop-оболочка с темами, локалями, каталогом из файла и интеграцией aria2c.";
+        ru.Values["catalog_notice"] = "В комплектный каталог уже перенесены реальные названия игр, версий и подписей ссылок из загруженного Python-приложения. Прямые mirror-URL и ссылки на серверные бинарники намеренно оставлены пустыми.";
+        ru.Values["settings_footer"] = "early-beta4 | build 1004";
+        ru.Values["hero_subtitle"] = "Специализированная оболочка-загрузчик для приватных исследовательских и тестовых сред.";
 
         return new Dictionary<string, LocaleBundle>
         {

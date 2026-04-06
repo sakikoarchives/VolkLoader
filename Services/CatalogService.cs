@@ -20,7 +20,7 @@ public sealed class CatalogService
         var fullPath = Path.Combine(baseDirectory, CatalogFileName);
         if (!File.Exists(fullPath))
         {
-            var sample = CreateSampleConfiguration();
+            var sample = CreateDefaultConfiguration();
             var json = JsonSerializer.Serialize(sample, _serializerOptions);
             File.WriteAllText(fullPath, json);
             return sample;
@@ -28,10 +28,10 @@ public sealed class CatalogService
 
         var content = File.ReadAllText(fullPath);
         var config = JsonSerializer.Deserialize<CatalogConfiguration>(content, _serializerOptions);
-        return config ?? CreateSampleConfiguration();
+        return config ?? CreateDefaultConfiguration();
     }
 
-    private static CatalogConfiguration CreateSampleConfiguration()
+    private static CatalogConfiguration CreateDefaultConfiguration()
     {
         return new CatalogConfiguration
         {
@@ -39,18 +39,131 @@ public sealed class CatalogService
             {
                 new CatalogSection
                 {
-                    Title = "Sample Game",
+                    Title = "Zenless Zone Zero",
                     Versions =
                     {
                         new VersionEntry
                         {
-                            Name = "Sample Version 1",
+                            Name = "CBT 1",
                             Links =
                             {
                                 new LinkEntry
                                 {
-                                    Name = "Official page",
-                                    Url = "https://example.com/game",
+                                    Name = "pCloud Mirror (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 2",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "ZZZ APK (Xeondev ±)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                    },
+                },
+                new CatalogSection
+                {
+                    Title = "Honkai: Star Rail",
+                    Versions =
+                    {
+                        new VersionEntry
+                        {
+                            Name = "Pre-CBT v0.56",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "Archive.org Mirror (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                    },
+                },
+                new CatalogSection
+                {
+                    Title = "Genshin Impact",
+                    Versions =
+                    {
+                        new VersionEntry
+                        {
+                            Name = "CBT 1",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "Archive.org Mirror (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 1.1",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "YuanShen_CB1.1_80d9 (+)",
+                                    Url = string.Empty,
+                                },
+                                new LinkEntry
+                                {
+                                    Name = "YuanShen_CB1.1_4a10 (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 2",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "YuanShen_CB2.0.0 (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 0.7.0",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "Genshin_0.7.0 (+)",
+                                    Url = string.Empty,
+                                },
+                                new LinkEntry
+                                {
+                                    Name = "Genshin_0.7.1 (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 0.9.0",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "YuanShen_0.9.3 (+)",
+                                    Url = string.Empty,
+                                },
+                                new LinkEntry
+                                {
+                                    Name = "YuanShen_0.9.9 (+)",
+                                    Url = string.Empty,
                                 },
                             },
                         },
@@ -61,18 +174,30 @@ public sealed class CatalogService
             {
                 new CatalogSection
                 {
-                    Title = "Sample Server Resources",
+                    Title = "Genshin Impact",
                     Versions =
                     {
                         new VersionEntry
                         {
-                            Name = "Setup archive",
+                            Name = "CBT 1 (Story Mode)",
                             Links =
                             {
                                 new LinkEntry
                                 {
-                                    Name = "Documentation",
-                                    Url = "https://example.com/server-docs",
+                                    Name = "Telegram Mirror (+)",
+                                    Url = string.Empty,
+                                },
+                            },
+                        },
+                        new VersionEntry
+                        {
+                            Name = "CBT 1.3",
+                            Links =
+                            {
+                                new LinkEntry
+                                {
+                                    Name = "Google Drive (+)",
+                                    Url = string.Empty,
                                 },
                             },
                         },
@@ -86,15 +211,10 @@ public sealed class CatalogService
                     new LinkEntry
                     {
                         Name = "Docker Desktop",
-                        Url = "https://www.docker.com/products/docker-desktop/",
-                    },
-                    new LinkEntry
-                    {
-                        Name = "Resource placeholder",
-                        Url = "https://example.com/tools-bundle",
+                        Url = "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe",
                     },
                 },
-                CommunityUrl = "https://example.com/community",
+                CommunityUrl = string.Empty,
             },
         };
     }
