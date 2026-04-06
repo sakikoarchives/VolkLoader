@@ -7,8 +7,8 @@
         MinHeight="700"
         Background="#080808"
         TransparencyLevelHint="None"
-        Title="VOLKLOADER - Avalonia port">
-  <Grid ColumnDefinitions="240,*">
+        Title="VOLKLOADER - early-beta4">
+  <Grid ColumnDefinitions="250,*">
     <Border x:Name="Sidebar"
             Grid.Column="0"
             BorderThickness="0,0,1,0">
@@ -28,7 +28,7 @@
                   Margin="0,10,0,2" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Margin="25,0,25,20" Spacing="10">
+        <StackPanel Grid.Row="1" Margin="22,0,22,20" Spacing="10">
           <Button x:Name="HomeButton" Height="55" Click="OnHomeClicked" />
           <Button x:Name="GamesButton" Height="55" Click="OnGamesClicked" />
           <Button x:Name="ServerButton" Height="55" Click="OnServerClicked" />
@@ -56,23 +56,27 @@
               BorderThickness="1"
               CornerRadius="16"
               Padding="18">
-        <ScrollViewer>
+        <ScrollViewer x:Name="ContentScrollViewer"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
           <StackPanel x:Name="ContentPanel" Spacing="14" />
         </ScrollViewer>
       </Border>
 
       <Border x:Name="OverlayBackdrop"
               IsVisible="False"
-              Background="#88000000" />
+              Background="#88000000"
+              PointerPressed="OnOverlayBackdropPressed" />
 
       <Border x:Name="OverlayBorder"
               IsVisible="False"
-              Width="620"
+              Width="650"
+              MaxWidth="650"
               HorizontalAlignment="Center"
               VerticalAlignment="Center"
-              Padding="24"
+              Padding="28"
               BorderThickness="2"
-              CornerRadius="16"
+              CornerRadius="18"
               ZIndex="100">
         <StackPanel x:Name="OverlayPanel" Spacing="12" />
       </Border>

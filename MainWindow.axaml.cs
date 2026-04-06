@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -21,7 +20,7 @@ public partial class MainWindow : Window
 {
     private const string BannerText =
         "┈┈┏╮┏╮┈┈┈┈┈┈┈┈╭╮   VOLKLOADER [AVALONIA-PORT]\n" +
-        "┈╭┛┗┛┗┳━━━━━━╮┃┃   safe desktop shell\n" +
+        "┈╭┛┗┛┗┳━━━━━━╮┃┃   early-beta4 // stable shell\n" +
         "┈┃▅┃▅┈┃╰╰╰╰╰╰┣╯┃   C# + Avalonia\n" +
         "▇┻━╯┈┈┃╰╰╰╰╰╰┣━╯   --------------------------------------\n" +
         "┣━━━╯┈╰╰╰╰╰╰╰┃┈┈   File-backed catalog, browser launch,\n" +
@@ -40,6 +39,8 @@ public partial class MainWindow : Window
     private CatalogConfiguration _catalog = new();
 
     private UserSettings _settings = new();
+
+    private string _activeSection = "HOME";
 
     private string _keyBuffer = string.Empty;
 
@@ -64,6 +65,11 @@ public partial class MainWindow : Window
         }
 
         KeyDown += OnWindowKeyDown;
+
+        AttachSidebarEffects(HomeButton, "HOME");
+        AttachSidebarEffects(GamesButton, "GAMES");
+        AttachSidebarEffects(ServerButton, "SERVER");
+        AttachSidebarEffects(SettingsButton, "SETTINGS");
 
         ApplyTheme();
         UpdateSidebarText();
@@ -94,9 +100,14 @@ public partial class MainWindow : Window
         ShowSettings();
     }
 
+    private void OnOverlayBackdropPressed(object? sender, PointerPressedEventArgs e)
+    {
+        HideOverlay();
+    }
+
     private void ShowHome()
     {
-        SetActiveSection(HomeButton);
+        SetActiveSection("HOME");
         ClearContent();
         AddLogo();
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["home_games"], CurrentTheme.Sidebar, CurrentTheme.Accent, ShowGames));
@@ -106,7 +117,7 @@ public partial class MainWindow : Window
 
     private void ShowGames()
     {
-        SetActiveSection(GamesButton);
+        SetActiveSection("GAMES");
         ClearContent();
         AddLogo();
 
@@ -122,20 +133,20 @@ public partial class MainWindow : Window
 
     private void ShowServer()
     {
-        SetActiveSection(ServerButton);
+        SetActiveSection("SERVER");
         ClearContent();
         AddLogo();
-        ContentPanel.Children.Add(CreateInfoCard(CurrentLocale["server_specs"]));
+        ContentPanel.Children.Add(CreateInfoCard(CurrentLocale["server_specs"], CurrentTheme.Neon));
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_tools"], CurrentTheme.Accent, "#FFFFFF", OpenServerTools));
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_repo"], CurrentTheme.Neon, "#FFFFFF", ShowServerRepo));
-        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_guide"], CurrentTheme.Background, "#808080", ShowGuide));
+        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["server_guide"], CurrentTheme.Background, "#909090", ShowGuide));
     }
 
     private void ShowServerRepo()
     {
-        SetActiveSection(ServerButton);
+        SetActiveSection("SERVER");
         ClearContent();
-        ContentPanel.Children.Add(CreateHeader(CurrentLocale["server_repo_title"], CurrentTheme.Neon));
+        ContentPanel.Children.Add(CreateHeaderBlock(CurrentLocale["server_repo_title"], CurrentTheme.Neon));
 
         foreach (var section in _catalog.ServerRepo)
         {
@@ -143,62 +154,66 @@ public partial class MainWindow : Window
                 $"📂 {section.Title}",
                 CurrentTheme.Sidebar,
                 CurrentTheme.Text,
-                () => ShowVersions(section.Title, section.Versions, ShowServerRepo)));
+                () => ShowVersions(section.Title, section.Versions, ShowServerRepo),
+                580,
+                65));
         }
 
-        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], ShowServer, "#808080"));
+        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], ShowServer, "#909090"));
     }
 
     private void ShowVersions(string title, IReadOnlyList<VersionEntry> versions, Action backAction)
     {
         ClearContent();
-        ContentPanel.Children.Add(CreateHeader(title.ToUpperInvariant(), CurrentTheme.Neon));
+        ContentPanel.Children.Add(CreateHeaderBlock(title.ToUpperInvariant(), CurrentTheme.Neon));
 
         foreach (var version in versions)
         {
-            ContentPanel.Children.Add(CreateVersionButton(version.Name, () => ShowLinks(version.Name, version.Links, () => ShowVersions(title, versions, backAction))));
+            ContentPanel.Children.Add(CreateVersionButton(
+                version.Name,
+                () => ShowLinks(version.Name, version.Links, () => ShowVersions(title, versions, backAction))));
         }
 
-        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["return"], backAction, "#808080"));
+        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["return"], backAction, "#909090"));
     }
 
     private void ShowLinks(string versionName, IReadOnlyList<LinkEntry> links, Action backAction)
     {
         ClearContent();
-        ContentPanel.Children.Add(CreateHeader(versionName.ToUpperInvariant(), CurrentTheme.Accent));
+        ContentPanel.Children.Add(CreateHeaderBlock(versionName.ToUpperInvariant(), CurrentTheme.Accent));
 
         foreach (var link in links)
         {
             ContentPanel.Children.Add(CreateLinkResourceButton(link.Name, () => ShowActionOverlay(link.Url)));
         }
 
-        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], backAction, "#808080"));
+        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], backAction, "#909090"));
     }
 
     private void ShowGuide()
     {
         ClearContent();
-        ContentPanel.Children.Add(CreateHeader(CurrentLocale["setup_guide_title"], CurrentTheme.Neon));
-        ContentPanel.Children.Add(CreateInfoCard(CurrentLocale["guide_text"]));
-        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], ShowServer, "#808080"));
+        ContentPanel.Children.Add(CreateHeaderBlock(CurrentLocale["setup_guide_title"], CurrentTheme.Neon));
+        ContentPanel.Children.Add(CreateInfoCard(CurrentLocale["guide_text"], CurrentTheme.Accent));
+        ContentPanel.Children.Add(CreateLinkButton(CurrentLocale["back"], ShowServer, "#909090"));
     }
 
     private void ShowSettings()
     {
-        SetActiveSection(SettingsButton);
+        SetActiveSection("SETTINGS");
         ClearContent();
         AddLogo();
 
         var ariaInstalled = IsAriaInstalled();
         var statusText = ariaInstalled ? CurrentLocale["found"] : CurrentLocale["not_found"];
-        var statusColor = ariaInstalled ? "#00FF00" : "#FF0000";
+        var statusColor = ariaInstalled ? "#00FF66" : "#FF5555";
 
         var statusRow = new StackPanel
         {
             Orientation = Orientation.Horizontal,
             HorizontalAlignment = HorizontalAlignment.Center,
             Spacing = 8,
-            Margin = new Thickness(0, 6, 0, 6),
+            Margin = new Thickness(0, 8, 0, 4),
         };
         statusRow.Children.Add(new TextBlock
         {
@@ -206,6 +221,7 @@ public partial class MainWindow : Window
             Foreground = Brush(CurrentTheme.Text),
             FontFamily = MonoFont(),
             FontSize = 16,
+            VerticalAlignment = VerticalAlignment.Center,
         });
         statusRow.Children.Add(new TextBlock
         {
@@ -214,16 +230,17 @@ public partial class MainWindow : Window
             FontFamily = MonoFont(),
             FontSize = 16,
             FontWeight = FontWeight.Bold,
+            VerticalAlignment = VerticalAlignment.Center,
         });
-        ContentPanel.Children.Add(statusRow);
+        ContentPanel.Children.Add(WrapCard(statusRow, CurrentTheme.Neon, new Thickness(60, 8, 60, 8), new Thickness(20, 16)));
 
-        ContentPanel.Children.Add(CreateHeader(CurrentLocale["theme_selector"], CurrentTheme.Neon, 20));
-        ContentPanel.Children.Add(CreateThemeSelector());
+        ContentPanel.Children.Add(CreateHeaderBlock(CurrentLocale["theme_selector"], CurrentTheme.Neon, 20));
+        ContentPanel.Children.Add(WrapCard(CreateThemeSelector(), CurrentTheme.Accent, new Thickness(120, 2, 120, 8), new Thickness(16, 14)));
 
-        ContentPanel.Children.Add(CreateHeader(CurrentLocale["lang_selector"], CurrentTheme.Neon, 20));
-        ContentPanel.Children.Add(CreateLanguageSelector());
+        ContentPanel.Children.Add(CreateHeaderBlock(CurrentLocale["lang_selector"], CurrentTheme.Neon, 20));
+        ContentPanel.Children.Add(WrapCard(CreateLanguageSelector(), CurrentTheme.Accent, new Thickness(160, 2, 160, 8), new Thickness(16, 14)));
 
-        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["community"], CurrentTheme.Background, CurrentTheme.Neon, OpenCommunityLink, 300, 50));
+        ContentPanel.Children.Add(CreateWideButton(CurrentLocale["community"], CurrentTheme.Background, CurrentTheme.Neon, OpenCommunityLink, 320, 52));
         ContentPanel.Children.Add(new TextBlock
         {
             Text = CurrentLocale["settings_footer"],
@@ -231,7 +248,7 @@ public partial class MainWindow : Window
             HorizontalAlignment = HorizontalAlignment.Center,
             FontFamily = MonoFont(),
             FontSize = 12,
-            Margin = new Thickness(0, 8, 0, 0),
+            Margin = new Thickness(0, 10, 0, 0),
         });
     }
 
@@ -239,10 +256,12 @@ public partial class MainWindow : Window
     {
         var comboBox = new ComboBox
         {
-            Width = 260,
+            Width = 280,
             HorizontalAlignment = HorizontalAlignment.Center,
             ItemsSource = _themes.Keys.ToList(),
             SelectedItem = _settings.ThemeName,
+            Background = Brush(CurrentTheme.Sidebar),
+            Foreground = Brush(CurrentTheme.Text),
         };
         comboBox.SelectionChanged += (_, _) =>
         {
@@ -266,6 +285,8 @@ public partial class MainWindow : Window
             HorizontalAlignment = HorizontalAlignment.Center,
             ItemsSource = _locales.Keys.ToList(),
             SelectedItem = _settings.Language,
+            Background = Brush(CurrentTheme.Sidebar),
+            Foreground = Brush(CurrentTheme.Text),
         };
         comboBox.SelectionChanged += (_, _) =>
         {
@@ -281,16 +302,18 @@ public partial class MainWindow : Window
         return comboBox;
     }
 
-    private void SetActiveSection(Button activeButton)
+    private void SetActiveSection(string sectionName)
     {
-        ApplySidebarButtonStyle(HomeButton);
-        ApplySidebarButtonStyle(GamesButton);
-        ApplySidebarButtonStyle(ServerButton);
-        ApplySidebarButtonStyle(SettingsButton);
+        _activeSection = sectionName;
+        RefreshSidebarButtons();
+    }
 
-        activeButton.Background = Brush(CurrentTheme.Neon);
-        activeButton.Foreground = Brush(CurrentTheme.Background);
-        activeButton.BorderBrush = Brush(CurrentTheme.Neon);
+    private void RefreshSidebarButtons()
+    {
+        ApplySidebarButtonVisual(HomeButton, "HOME", false, false);
+        ApplySidebarButtonVisual(GamesButton, "GAMES", false, false);
+        ApplySidebarButtonVisual(ServerButton, "SERVER", false, false);
+        ApplySidebarButtonVisual(SettingsButton, "SETTINGS", false, false);
     }
 
     private void ClearContent()
@@ -301,16 +324,6 @@ public partial class MainWindow : Window
 
     private void AddLogo()
     {
-        var wrapper = new Border
-        {
-            Background = Brush(CurrentTheme.Sidebar),
-            BorderBrush = Brush(CurrentTheme.Border),
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(14),
-            Padding = new Thickness(24),
-            Margin = new Thickness(40, 30, 40, 18),
-        };
-
         var panel = new StackPanel
         {
             Spacing = 10,
@@ -332,7 +345,7 @@ public partial class MainWindow : Window
         {
             Height = 1,
             Background = Brush(CurrentTheme.Border),
-            Margin = new Thickness(30, 2, 30, 2),
+            Margin = new Thickness(26, 2, 26, 2),
         });
 
         panel.Children.Add(new TextBlock
@@ -346,21 +359,13 @@ public partial class MainWindow : Window
             TextAlignment = TextAlignment.Center,
         });
 
-        wrapper.Child = panel;
-        ContentPanel.Children.Add(wrapper);
+        ContentPanel.Children.Add(WrapCard(panel, CurrentTheme.Neon, new Thickness(40, 30, 40, 18), new Thickness(24)));
     }
 
-    private Border CreateNoticeBlock(string text)
+    private Control CreateNoticeBlock(string text)
     {
-        return new Border
-        {
-            Background = Brush(CurrentTheme.Sidebar),
-            BorderBrush = Brush(CurrentTheme.Border),
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(14),
-            Padding = new Thickness(18),
-            Margin = new Thickness(60, 12, 60, 12),
-            Child = new TextBlock
+        return WrapCard(
+            new TextBlock
             {
                 Text = text,
                 Foreground = Brush(CurrentTheme.Text),
@@ -368,20 +373,15 @@ public partial class MainWindow : Window
                 FontSize = 13,
                 TextWrapping = TextWrapping.Wrap,
             },
-        };
+            CurrentTheme.Accent,
+            new Thickness(60, 12, 60, 12),
+            new Thickness(18));
     }
 
-    private Border CreateInfoCard(string text)
+    private Control CreateInfoCard(string text, string accentHex)
     {
-        return new Border
-        {
-            Background = Brush(CurrentTheme.Sidebar),
-            BorderBrush = Brush(CurrentTheme.Border),
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(14),
-            Padding = new Thickness(24),
-            Margin = new Thickness(60, 10, 60, 10),
-            Child = new TextBlock
+        return WrapCard(
+            new TextBlock
             {
                 Text = text,
                 Foreground = Brush(CurrentTheme.Text),
@@ -389,12 +389,21 @@ public partial class MainWindow : Window
                 FontSize = 18,
                 TextWrapping = TextWrapping.Wrap,
             },
-        };
+            accentHex,
+            new Thickness(60, 10, 60, 10),
+            new Thickness(24));
     }
 
-    private TextBlock CreateHeader(string text, string colorHex, double fontSize = 28)
+    private Control CreateHeaderBlock(string text, string colorHex, double fontSize = 28)
     {
-        return new TextBlock
+        var panel = new StackPanel
+        {
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Spacing = 4,
+            Margin = new Thickness(0, 28, 0, 16),
+        };
+
+        panel.Children.Add(new TextBlock
         {
             Text = text,
             Foreground = Brush(colorHex),
@@ -404,13 +413,23 @@ public partial class MainWindow : Window
             LetterSpacing = 0.8,
             HorizontalAlignment = HorizontalAlignment.Center,
             TextAlignment = TextAlignment.Center,
-            Margin = new Thickness(0, 30, 0, 20),
-        };
+        });
+
+        panel.Children.Add(new Border
+        {
+            Width = 180,
+            Height = 1,
+            Background = Brush(CurrentTheme.Border),
+            HorizontalAlignment = HorizontalAlignment.Center,
+        });
+
+        return panel;
     }
 
     private Button CreateWideButton(string text, string backgroundHex, string textOrAccentHex, Action onClick, double width = 580, double height = 75)
     {
         var button = CreateBaseButton(text, backgroundHex, textOrAccentHex, width, height);
+        AttachInteractiveEffects(button, backgroundHex, textOrAccentHex, CurrentTheme.Border, pressedUsesForeground: false);
         button.Click += (_, _) => onClick();
         return button;
     }
@@ -418,7 +437,8 @@ public partial class MainWindow : Window
     private Button CreateVersionButton(string text, Action onClick)
     {
         var button = CreateBaseButton(text, CurrentTheme.Sidebar, CurrentTheme.Text, 580, 60);
-        button.BorderBrush = Brush(CurrentTheme.Neon);
+        SetButtonVisual(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Neon);
+        AttachInteractiveEffects(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Neon, pressedUsesForeground: true);
         button.Click += (_, _) => onClick();
         return button;
     }
@@ -426,7 +446,8 @@ public partial class MainWindow : Window
     private Button CreateLinkResourceButton(string text, Action onClick)
     {
         var button = CreateBaseButton($"★ {text}", CurrentTheme.Sidebar, CurrentTheme.Text, 620, 55);
-        button.BorderBrush = Brush(CurrentTheme.Border);
+        SetButtonVisual(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border);
+        AttachInteractiveEffects(button, CurrentTheme.Sidebar, CurrentTheme.Text, CurrentTheme.Border, pressedUsesForeground: true);
         button.Click += (_, _) => onClick();
         return button;
     }
@@ -474,7 +495,20 @@ public partial class MainWindow : Window
     {
         _selectedActionUrl = url;
         OverlayPanel.Children.Clear();
-        OverlayPanel.Children.Add(CreateHeader(CurrentLocale["select_method"], CurrentTheme.Neon, 20));
+        OverlayPanel.Children.Add(CreateHeaderBlock(CurrentLocale["select_method"], CurrentTheme.Neon, 20));
+
+        OverlayPanel.Children.Add(WrapCard(
+            new TextBlock
+            {
+                Text = url,
+                Foreground = Brush(CurrentTheme.Text),
+                FontFamily = MonoFont(),
+                FontSize = 12,
+                TextWrapping = TextWrapping.Wrap,
+            },
+            CurrentTheme.Border,
+            new Thickness(4, 0, 4, 4),
+            new Thickness(14, 12)));
 
         var row = new StackPanel
         {
@@ -486,7 +520,7 @@ public partial class MainWindow : Window
         row.Children.Add(CreateOverlayActionButton(CurrentLocale["method_browser"], CurrentTheme.Neon, OpenInBrowser));
         row.Children.Add(CreateOverlayActionButton(CurrentLocale["method_aria"], CurrentTheme.Accent, StartAriaDownload));
         OverlayPanel.Children.Add(row);
-        OverlayPanel.Children.Add(CreateLinkButton(CurrentLocale["cancel"], HideOverlay, "#FF4444"));
+        OverlayPanel.Children.Add(CreateLinkButton(CurrentLocale["cancel"], HideOverlay, "#FF5555"));
         OverlayBackdrop.IsVisible = true;
         OverlayBorder.IsVisible = true;
     }
@@ -506,6 +540,7 @@ public partial class MainWindow : Window
             FontSize = 14,
             FontWeight = FontWeight.Bold,
         };
+        AttachInteractiveEffects(button, backgroundHex, "#FFFFFF", backgroundHex, pressedUsesForeground: false);
         button.Click += (_, _) => onClick();
         return button;
     }
@@ -513,7 +548,7 @@ public partial class MainWindow : Window
     private void ShowInfoOverlay(string message)
     {
         OverlayPanel.Children.Clear();
-        OverlayPanel.Children.Add(CreateHeader(message, CurrentTheme.Neon, 18));
+        OverlayPanel.Children.Add(CreateHeaderBlock(message, CurrentTheme.Neon, 18));
         OverlayPanel.Children.Add(CreateLinkButton(CurrentLocale["close"], HideOverlay, CurrentTheme.Text));
         OverlayBackdrop.IsVisible = true;
         OverlayBorder.IsVisible = true;
@@ -638,23 +673,127 @@ public partial class MainWindow : Window
         OverlayBorder.Background = Brush(CurrentTheme.Sidebar);
         OverlayBorder.BorderBrush = Brush(CurrentTheme.Neon);
 
-        ApplySidebarButtonStyle(HomeButton);
-        ApplySidebarButtonStyle(GamesButton);
-        ApplySidebarButtonStyle(ServerButton);
-        ApplySidebarButtonStyle(SettingsButton);
+        RefreshSidebarButtons();
     }
 
-    private void ApplySidebarButtonStyle(Button button)
+    private void AttachSidebarEffects(Button button, string sectionName)
     {
-        button.Background = Brushes.Transparent;
-        button.Foreground = Brush(CurrentTheme.Neon);
-        button.BorderBrush = Brush(CurrentTheme.Neon);
+        button.PointerEntered += (_, _) => ApplySidebarButtonVisual(button, sectionName, hover: true, pressed: false);
+        button.PointerExited += (_, _) => ApplySidebarButtonVisual(button, sectionName, hover: false, pressed: false);
+        button.PointerPressed += (_, _) => ApplySidebarButtonVisual(button, sectionName, hover: false, pressed: true);
+        button.PointerReleased += (_, _) => ApplySidebarButtonVisual(button, sectionName, button.IsPointerOver, false);
+    }
+
+    private void ApplySidebarButtonVisual(Button button, string sectionName, bool hover, bool pressed)
+    {
+        var isActive = string.Equals(_activeSection, sectionName, StringComparison.Ordinal);
+
+        string background;
+        string foreground;
+        string border;
+
+        if (isActive)
+        {
+            background = CurrentTheme.Neon;
+            foreground = CurrentTheme.Background;
+            border = CurrentTheme.Neon;
+        }
+        else if (pressed)
+        {
+            background = AdjustColor(CurrentTheme.Neon, -0.08);
+            foreground = CurrentTheme.Background;
+            border = CurrentTheme.Neon;
+        }
+        else if (hover)
+        {
+            background = AdjustColor(CurrentTheme.Sidebar, 0.08);
+            foreground = CurrentTheme.Neon;
+            border = CurrentTheme.Neon;
+        }
+        else
+        {
+            background = "#00000000";
+            foreground = CurrentTheme.Neon;
+            border = CurrentTheme.Neon;
+        }
+
+        SetButtonVisual(button, background, foreground, border);
         button.BorderThickness = new Thickness(1);
         button.FontFamily = MonoFont();
         button.FontSize = 14;
         button.FontWeight = FontWeight.Bold;
         button.HorizontalContentAlignment = HorizontalAlignment.Center;
         button.Padding = new Thickness(12, 6);
+    }
+
+    private void AttachInteractiveEffects(Button button, string normalBackground, string normalForeground, string normalBorder, bool pressedUsesForeground)
+    {
+        var hoverBackground = CurrentTheme.Mode == ThemeVariant.Dark
+            ? AdjustColor(normalBackground, 0.08)
+            : AdjustColor(normalBackground, -0.06);
+
+        var hoverBorder = normalBorder == "#00000000"
+            ? CurrentTheme.Neon
+            : AdjustColor(normalBorder, 0.10);
+
+        var pressedBackground = pressedUsesForeground ? AdjustColor(CurrentTheme.Neon, -0.08) : AdjustColor(normalBackground, -0.10);
+        var pressedForeground = pressedUsesForeground ? CurrentTheme.Background : normalForeground;
+        var pressedBorder = pressedUsesForeground ? CurrentTheme.Neon : hoverBorder;
+
+        button.PointerEntered += (_, _) => SetButtonVisual(button, hoverBackground, normalForeground, hoverBorder);
+        button.PointerExited += (_, _) => SetButtonVisual(button, normalBackground, normalForeground, normalBorder);
+        button.PointerPressed += (_, _) => SetButtonVisual(button, pressedBackground, pressedForeground, pressedBorder);
+        button.PointerReleased += (_, _) =>
+        {
+            if (button.IsPointerOver)
+            {
+                SetButtonVisual(button, hoverBackground, normalForeground, hoverBorder);
+            }
+            else
+            {
+                SetButtonVisual(button, normalBackground, normalForeground, normalBorder);
+            }
+        };
+    }
+
+    private Control WrapCard(Control child, string accentHex, Thickness margin, Thickness padding)
+    {
+        var grid = new Grid
+        {
+            ColumnDefinitions = new ColumnDefinitions("6,*"),
+        };
+
+        grid.Children.Add(new Border
+        {
+            Background = Brush(accentHex),
+            CornerRadius = new CornerRadius(3),
+        });
+
+        var host = new Border
+        {
+            Background = Brush(CurrentTheme.Sidebar),
+            BorderBrush = Brush(CurrentTheme.Border),
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(14),
+            Padding = padding,
+            Child = child,
+        };
+        Grid.SetColumn(host, 1);
+        grid.Children.Add(host);
+
+        return new Border
+        {
+            Background = Brushes.Transparent,
+            Margin = margin,
+            Child = grid,
+        };
+    }
+
+    private static void SetButtonVisual(Button button, string backgroundHex, string foregroundHex, string borderHex)
+    {
+        button.Background = backgroundHex == "#00000000" ? Brushes.Transparent : Brush(backgroundHex);
+        button.Foreground = Brush(foregroundHex);
+        button.BorderBrush = borderHex == "#00000000" ? Brushes.Transparent : Brush(borderHex);
     }
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
@@ -727,5 +866,21 @@ public partial class MainWindow : Window
     private static SolidColorBrush Brush(string hex)
     {
         return new SolidColorBrush(Color.Parse(hex));
+    }
+
+    private static string AdjustColor(string hex, double delta)
+    {
+        var color = Color.Parse(hex);
+        return $"#{Adjust(color.R, delta):X2}{Adjust(color.G, delta):X2}{Adjust(color.B, delta):X2}";
+    }
+
+    private static byte Adjust(byte component, double delta)
+    {
+        var adjusted = delta >= 0
+            ? component + ((255 - component) * delta)
+            : component * (1.0 + delta);
+
+        adjusted = Math.Clamp(adjusted, 0, 255);
+        return (byte)Math.Round(adjusted);
     }
 }

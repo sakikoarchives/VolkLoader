@@ -18,7 +18,11 @@
     <Style Selector="ComboBox">
       <Setter Property="FontFamily" Value="Consolas, Menlo, Monaco, Courier New" />
       <Setter Property="Padding" Value="8,6" />
-      <Setter Property="MinHeight" Value="38" />
+      <Setter Property="MinHeight" Value="40" />
+    </Style>
+
+    <Style Selector="ScrollBar">
+      <Setter Property="Width" Value="12" />
     </Style>
   </Application.Styles>
 </Application>
