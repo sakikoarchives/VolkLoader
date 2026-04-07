@@ -338,7 +338,7 @@ public partial class MainWindow : Window
             FontWeight = FontWeight.Bold,
             TextWrapping = TextWrapping.Wrap,
             HorizontalAlignment = HorizontalAlignment.Center,
-            TextAlignment = TextAlignment.Center,
+            TextAlignment = TextAlignment.Left,
         });
 
         panel.Children.Add(new Border
