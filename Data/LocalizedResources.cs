@@ -14,10 +14,10 @@ public static class LocalizedResources
         en.Values["nav_settings"] = "SETTINGS";
         en.Values["home_games"] = "DOWNLOAD GAMES";
         en.Values["home_servers"] = "DOWNLOAD SERVERS";
-        en.Values["server_specs"] = "RAM: 16.0 GB+
-DISK: 8.0 GB+
-VIRTUALIZATION: ENABLED
-OS: WINDOWS 64-BIT";
+        en.Values["server_specs"] = "RAM: 16.0 GB+" +
+                                    "DISK: 8.0 GB+\n" +
+                                    "VIRTUALIZATION: ENABLED\n" +
+                                    "OS: WINDOWS 64 - BIT";
         en.Values["server_tools"] = "DOWNLOAD TOOLS BUNDLE";
         en.Values["server_repo"] = "BROWSE SERVER REPO";
         en.Values["server_guide"] = "READ SETUP GUIDE";
@@ -34,11 +34,11 @@ OS: WINDOWS 64-BIT";
         en.Values["aria_status"] = "ARIA2C STATUS:";
         en.Values["setup_guide_title"] = "SETUP GUIDE";
         en.Values["server_repo_title"] = "SERVER REPOSITORY";
-        en.Values["guide_text"] = "1. Preparation: install Docker & SucroseProxy.
-2. Download: extract the server (avoid problematic symbols in the path).
-3. Install: run the required bootstrap script with administrator rights.
-4. Start: launch the start script and verify that all background services are healthy.
-5. Login: use your own lawful test environment and credentials.";
+        en.Values["guide_text"] = "1. Preparation: install Docker & SucroseProxy.\n" +
+                                  "2. Download: extract the server (avoid problematic symbols in the path).\n" +
+                                  "3. Install: run the required bootstrap script with administrator rights.\n" +
+                                  "4. Start: launch the start script and verify that all background services are healthy.\n" +
+                                  "5. Login: use your own lawful test environment and credentials.\n";
         en.Values["not_found"] = "[ NOT FOUND ]";
         en.Values["found"] = "[ FOUND ]";
         en.Values["aria_missing_message"] = "aria2c was not found in PATH.";
@@ -59,10 +59,10 @@ OS: WINDOWS 64-BIT";
         ru.Values["nav_settings"] = "НАСТРОЙКИ";
         ru.Values["home_games"] = "СКАЧАТЬ ИГРЫ";
         ru.Values["home_servers"] = "СКАЧАТЬ СЕРВЕРЫ";
-        ru.Values["server_specs"] = "ОЗУ: 16.0 ГБ+
-ДИСК: 8.0 ГБ+
-ВИРТУАЛИЗАЦИЯ: ВКЛЮЧЕНА
-ОС: WINDOWS 64-BIT";
+        ru.Values["server_specs"] = "ОЗУ: 16.0 ГБ+\n" +
+                                    "ДИСК: 8.0 ГБ+\n" +
+                                    "ВИРТУАЛИЗАЦИЯ: ВКЛЮЧЕНА\n" +
+                                    "ОС: WINDOWS 64-BIT";
         ru.Values["server_tools"] = "СКАЧАТЬ НАБОР СОФТА";
         ru.Values["server_repo"] = "КАТАЛОГ СЕРВЕРОВ";
         ru.Values["server_guide"] = "ИНСТРУКЦИЯ ПО УСТАНОВКЕ";
@@ -79,11 +79,11 @@ OS: WINDOWS 64-BIT";
         ru.Values["aria_status"] = "СТАТУС ARIA2C:";
         ru.Values["setup_guide_title"] = "ИНСТРУКЦИЯ";
         ru.Values["server_repo_title"] = "РЕПОЗИТОРИЙ СЕРВЕРОВ";
-        ru.Values["guide_text"] = "1. Подготовка: установи Docker и SucroseProxy.
-2. Загрузка: распакуй сервер в путь без проблемных символов.
-3. Установка: запусти нужный bootstrap-скрипт с правами администратора.
-4. Запуск: стартуй сервер и проверь, что фоновые сервисы работают штатно.
-5. Вход: используй свою легальную тестовую среду и собственные учётные данные.";
+        ru.Values["guide_text"] = "1. Подготовка: установи Docker и SucroseProxy.\n" +
+                                  "2. Загрузка: распакуй сервер в путь без проблемных символов.\n" +
+                                  "3. Установка: запусти нужный bootstrap-скрипт с правами администратора.\n" +
+                                  "4. Запуск: стартуй сервер и проверь, что фоновые сервисы работают штатно.\n" +
+                                  "5. Вход: используй свою легальную тестовую среду и собственные учётные данные.";
         ru.Values["not_found"] = "[ НЕ НАЙДЕНО ]";
         ru.Values["found"] = "[ НАЙДЕНО ]";
         ru.Values["aria_missing_message"] = "aria2c не найден в PATH.";
