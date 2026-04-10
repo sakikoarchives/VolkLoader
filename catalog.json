@@ -16,7 +16,7 @@
           "Links": [
             {
               "Name": "pCloud Mirror (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://e.pcloud.link/publink/show?code=z0ootalK"
             }
           ]
         },
@@ -25,7 +25,7 @@
           "Links": [
             {
               "Name": "ZZZ APK (Xeondev ±)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://git.xeondev.com/xeon/ZZZToolkit/src/branch/main/ZZZ.apk"
             }
           ]
         }
@@ -39,7 +39,7 @@
           "Links": [
             {
               "Name": "Archive.org Mirror (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://archive.org/details/honkai-star-rail-pre-cbt-v0.56"
             }
           ]
         }
@@ -53,7 +53,7 @@
           "Links": [
             {
               "Name": "Archive.org Mirror (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://archive.org/download/gs-cn-cb-1.0.0/GS_CN_CB1.0.0.exe"
             }
           ]
         },
@@ -62,11 +62,11 @@
           "Links": [
             {
               "Name": "YuanShen_CB1.1_80d9 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB1.1_80d9edf828.zip"
             },
             {
               "Name": "YuanShen_CB1.1_4a10 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB1.1_4a1067e2bd.zip"
             }
           ]
         },
@@ -75,7 +75,7 @@
           "Links": [
             {
               "Name": "YuanShen_CB2.0.0 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB2.0.0_e4392f9320.zip"
             }
           ]
         },
@@ -84,11 +84,11 @@
           "Links": [
             {
               "Name": "Genshin_0.7.0 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://autopatchhk.yuanshen.com/client_app/pc_plus19/Genshin_0.7.0.zip"
             },
             {
               "Name": "Genshin_0.7.1 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://autopatchhk.yuanshen.com/client_app/pc_plus19/Genshin_0.7.1.zip"
             }
           ]
         },
@@ -97,11 +97,11 @@
           "Links": [
             {
               "Name": "YuanShen_0.9.3 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://autopatchcn.yuanshen.com/client_app/pc_release/YuanShen_0.9.3.zip"
             },
             {
               "Name": "YuanShen_0.9.9 (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://autopatchcn.yuanshen.com/client_app/pc_cb3/YuanShen_0.9.9.zip"
             }
           ]
         }
@@ -117,7 +117,7 @@
           "Links": [
             {
               "Name": "Telegram Mirror (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://t.me/zbV0l/11756"
             }
           ]
         },
@@ -126,7 +126,7 @@
           "Links": [
             {
               "Name": "Google Drive (+)",
-              "Url": "PLACEHOLDER_URL"
+              "Url": "https://drive.google.com/file/d/113OoHv_uvn3B6pz8ZqumUeeDszGZ8FA1/view"
             }
           ]
         }
@@ -137,13 +137,13 @@
     "ServerTools": [
       {
         "Name": "Docker Desktop",
-        "Url": "PLACEHOLDER_URL"
+        "Url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe"
       },
       {
         "Name": "SucroseProxy",
-        "Url": "PLACEHOLDER_URL"
+        "Url": "https://drive.google.com/uc?export=download&id=1Ys4c8w5i-Kc07msy-mVKiYSV4zpd_WB5"
       }
     ],
-    "CommunityUrl": "PLACEHOLDER_URL"
+    "CommunityUrl": "https://t.me/v0lchokteam"
   }
 }
