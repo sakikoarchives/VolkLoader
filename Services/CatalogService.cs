@@ -45,12 +45,12 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1",
-                            Links = { new LinkEntry { Name = "pCloud Mirror (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "pCloud Mirror (+)", Url = "https://e.pcloud.link/publink/show?code=z0ootalK" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 2",
-                            Links = { new LinkEntry { Name = "ZZZ APK (Xeondev ±)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "ZZZ APK (Xeondev ±)", Url = "https://git.xeondev.com/xeon/ZZZToolkit/src/branch/main/ZZZ.apk" } },
                         },
                     },
                 },
@@ -62,7 +62,7 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "Pre-CBT v0.56",
-                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "https://archive.org/details/honkai-star-rail-pre-cbt-v0.56" } },
                         },
                     },
                 },
@@ -74,29 +74,29 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1",
-                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "Archive.org Mirror (+)", Url = "https://archive.org/download/gs-cn-cb-1.0.0/GS_CN_CB1.0.0.exe" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 1.1",
                             Links =
                             {
-                                new LinkEntry { Name = "YuanShen_CB1.1_80d9 (+)", Url = "PLACEHOLDER_URL" },
-                                new LinkEntry { Name = "YuanShen_CB1.1_4a10 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "YuanShen_CB1.1_80d9 (+)", Url = "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB1.1_80d9edf828.zip" },
+                                new LinkEntry { Name = "YuanShen_CB1.1_4a10 (+)", Url = "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB1.1_4a1067e2bd.zip" },
                             },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 2",
-                            Links = { new LinkEntry { Name = "YuanShen_CB2.0.0 (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "YuanShen_CB2.0.0 (+)", Url = "https://hk4e-download.oss-cn-shanghai.aliyuncs.com/client_app/pc/YuanShen_CB2.0.0_e4392f9320.zip" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 0.7.0",
                             Links =
                             {
-                                new LinkEntry { Name = "Genshin_0.7.0 (+)", Url = "PLACEHOLDER_URL" },
-                                new LinkEntry { Name = "Genshin_0.7.1 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "Genshin_0.7.0 (+)", Url = "https://autopatchhk.yuanshen.com/client_app/pc_plus19/Genshin_0.7.0.zip" },
+                                new LinkEntry { Name = "Genshin_0.7.1 (+)", Url = "https://autopatchhk.yuanshen.com/client_app/pc_plus19/Genshin_0.7.1.zip" },
                             },
                         },
                         new VersionEntry
@@ -104,8 +104,8 @@ public sealed class CatalogService
                             Name = "CBT 0.9.0",
                             Links =
                             {
-                                new LinkEntry { Name = "YuanShen_0.9.3 (+)", Url = "PLACEHOLDER_URL" },
-                                new LinkEntry { Name = "YuanShen_0.9.9 (+)", Url = "PLACEHOLDER_URL" },
+                                new LinkEntry { Name = "YuanShen_0.9.3 (+)", Url = "https://autopatchcn.yuanshen.com/client_app/pc_release/YuanShen_0.9.3.zip" },
+                                new LinkEntry { Name = "YuanShen_0.9.9 (+)", Url = "https://autopatchcn.yuanshen.com/client_app/pc_cb3/YuanShen_0.9.9.zi" },
                             },
                         },
                     },
@@ -121,12 +121,12 @@ public sealed class CatalogService
                         new VersionEntry
                         {
                             Name = "CBT 1 (Story Mode)",
-                            Links = { new LinkEntry { Name = "Telegram Mirror (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "Telegram Mirror (+)", Url = "https://t.me/zbV0l/11756" } },
                         },
                         new VersionEntry
                         {
                             Name = "CBT 1.3",
-                            Links = { new LinkEntry { Name = "Google Drive (+)", Url = "PLACEHOLDER_URL" } },
+                            Links = { new LinkEntry { Name = "Google Drive (+)", Url = "https://drive.google.com/file/d/113OoHv_uvn3B6pz8ZqumUeeDszGZ8FA1/view" } },
                         },
                     },
                 },
@@ -135,10 +135,10 @@ public sealed class CatalogService
             {
                 ServerTools =
                 {
-                    new LinkEntry { Name = "Docker Desktop", Url = "PLACEHOLDER_URL" },
-                    new LinkEntry { Name = "SucroseProxy", Url = "PLACEHOLDER_URL" },
+                    new LinkEntry { Name = "Docker Desktop", Url = "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe" },
+                    new LinkEntry { Name = "SucroseProxy", Url = "https://drive.google.com/uc?export=download&id=1Ys4c8w5i-Kc07msy-mVKiYSV4zpd_WB5" },
                 },
-                CommunityUrl = "PLACEHOLDER_URL",
+                CommunityUrl = "https://t.me/v0lchokteam",
             },
         };
     }
