@@ -91,7 +91,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore VolkLoaderAvalonia.csproj
+        shell: bash
+        run: |
+          dotnet restore VolkLoaderAvalonia.csproj \
+            --runtime "${{ matrix.rid }}"
 
       - name: Publish application
         shell: bash
