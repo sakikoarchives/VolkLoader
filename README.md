@@ -23,7 +23,7 @@
 | **Дополнительно** | aria2c в системном PATH (для быстрой загрузки) |
 
 ### Инструкция по запуску
-Вы можете воспользоваться готовым релизом под Windows, Linux или macOS из вкладки Releases
+Вы можете воспользоваться готовым релизом под Windows, Linux или macOS из вкладки Releases. После скачивания архива достаточно открыть VolkLoaderAvalonia внутри.
 
 Для запуска из исходного кода используйте следующие команды:
 
@@ -51,7 +51,7 @@ dotnet run
 * **Optional:** `aria2c` installed and added to PATH.
 
 ### Getting Started
-You can use a compiled release from the "Releases" tab
+You can use a compiled release from the "Releases" tab. After unzipping the archive, open the VolkLoaderAvalonia binary inside.
 
 To compile from source, use:
 
