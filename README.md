@@ -23,6 +23,8 @@
 | **Дополнительно** | aria2c в системном PATH (для быстрой загрузки) |
 
 ### Инструкция по запуску
+Вы можете воспользоваться готовым релизом под Windows, Linux или macOS из вкладки Releases
+
 Для запуска из исходного кода используйте следующие команды:
 
 ```bash
@@ -49,6 +51,10 @@ dotnet run
 * **Optional:** `aria2c` installed and added to PATH.
 
 ### Getting Started
+You can use a compiled release from the "Releases" tab
+
+To compile from source, use:
+
 ```bash
 dotnet restore
 dotnet build
