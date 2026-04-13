@@ -112,7 +112,6 @@ public partial class MainWindow : Window
         AddLogo();
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["home_games"], CurrentTheme.Sidebar, CurrentTheme.Accent, ShowGames));
         ContentPanel.Children.Add(CreateWideButton(CurrentLocale["home_servers"], CurrentTheme.Sidebar, CurrentTheme.Neon, ShowServer));
-        ContentPanel.Children.Add(CreateNoticeBlock(CurrentLocale["catalog_notice"]));
     }
 
     private void ShowGames()
@@ -328,17 +327,25 @@ public partial class MainWindow : Window
         {
             Spacing = 10,
         };
-
-        panel.Children.Add(new TextBlock
+        
+        var bannerTextBlock = new TextBlock
         {
             Text = BannerText,
             Foreground = Brush(CurrentTheme.Neon),
             FontFamily = MonoFont(),
             FontSize = 16,
             FontWeight = FontWeight.Bold,
-            TextWrapping = TextWrapping.Wrap,
-            HorizontalAlignment = HorizontalAlignment.Center,
+            TextWrapping = TextWrapping.NoWrap,
             TextAlignment = TextAlignment.Left,
+            HorizontalAlignment = HorizontalAlignment.Center,
+        };
+        
+        panel.Children.Add(new Viewbox
+        {
+            Child = bannerTextBlock,
+            Stretch = Stretch.Uniform,
+            StretchDirection = StretchDirection.DownOnly,
+            HorizontalAlignment = HorizontalAlignment.Center,
         });
 
         panel.Children.Add(new Border
